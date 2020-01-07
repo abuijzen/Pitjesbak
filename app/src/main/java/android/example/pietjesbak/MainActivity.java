@@ -11,8 +11,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //constante aanmaken voor string
-        //public static final String PLAYER1 = "android.example.pietjesbak.PLAYER1";
-        //public static final String PLAYER2 = "android.example.pietjesbak.PLAYER2";
+        public static final String PLAYER1 = "player1";
+        public static final String PLAYER2 = "player2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

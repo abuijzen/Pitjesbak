@@ -7,7 +7,7 @@
     tools:context=".Gamescreen">
 
     <TextView
-        android:id="@+id/getPlayer1"
+        android:id="@+id/addPlayer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30px"
@@ -15,12 +15,12 @@
         />
 
     <TextView
-        android:id="@+id/getPlayer2"
+        android:id="@+id/addPlayer2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30px"
         android:layout_marginEnd="30px"
-        android:layout_below="@id/getPlayer1"
+        android:layout_below="@id/addPlayer1"
         />
 
     <TextView
