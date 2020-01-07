@@ -4,35 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Gamescreen">
 
-    <EditText
-        android:id="@+id/addPlayer1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30px"
-        android:layout_marginEnd="30px"/>
-
-    <EditText
-        android:id="@+id/addPlayer2"
+    <TextView
+        android:id="@+id/getPlayer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30px"
         android:layout_marginEnd="30px"
-        android:layout_below="@id/addPlayer1"/>
+        />
 
-    <Button
-        android:id="@+id/startGame"
+    <TextView
+        android:id="@+id/getPlayer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30px"
+        android:layout_marginEnd="30px"
+        android:layout_below="@id/getPlayer1"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="127dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:text="Activity 2"
+        android:textSize="30sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="167dp"
-        android:layout_marginLeft="167dp"
-        android:layout_marginTop="274dp"
-        android:layout_marginBottom="289dp"
-        android:text="Start" />
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
