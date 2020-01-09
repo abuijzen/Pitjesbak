@@ -21,9 +21,6 @@ public class DiceRoller {
         dice[0] = new Die();
         dice[1] = new Die();
         dice[2] = new Die();
-        dice[3] = new Die();
-        dice[4] = new Die();
-        dice[5] = new Die();
 
         //random class initialiseren
         random = new Random();

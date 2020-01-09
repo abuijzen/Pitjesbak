@@ -23,9 +23,6 @@ public class Gamescreen extends AppCompatActivity {
     ImageView dieOneView;
     ImageView dieTwoView;
     ImageView dieThreeView;
-    ImageView dieFourView;
-    ImageView dieFiveView;
-    ImageView dieSixView;
 
     //button instantie
     Button rollButton;
@@ -77,7 +74,6 @@ public class Gamescreen extends AppCompatActivity {
                         //afbeelding van de dobbelsteen veranderen
                         changeDiceImages();
 
-
                     }
             });
     }
@@ -90,17 +86,11 @@ public class Gamescreen extends AppCompatActivity {
         dieOneView = findViewById(R.id.dieOneView);
         dieTwoView = findViewById(R.id.dieTwoView);
         dieThreeView = findViewById(R.id.dieThreeView);
-        dieFourView = findViewById(R.id.dieFourView);
-        dieFiveView = findViewById(R.id.dieFiveView);
-        dieSixView = findViewById(R.id.dieSixView);
 
         //array invullen
         diceViews[0] = dieOneView;
         diceViews[1] = dieTwoView;
         diceViews[2] = dieThreeView;
-        diceViews[3] = dieFourView;
-        diceViews[4] = dieFiveView;
-        diceViews[5] = dieSixView;
     }
 
     private int getDiceId(int number){

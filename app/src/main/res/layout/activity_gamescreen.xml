@@ -27,6 +27,19 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="30px" />
 
+
+    <ImageView
+        android:id="@+id/dieThreeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        app:srcCompat="@drawable/die3" />
+
     <ImageView
         android:id="@+id/dieOneView"
         android:layout_width="wrap_content"
@@ -34,9 +47,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginLeft="86dp"
+        android:layout_marginTop="262dp"
         app:srcCompat="@drawable/die1" />
 
     <ImageView
@@ -47,61 +60,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="174dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginRight="163dp"
         app:srcCompat="@drawable/die2" />
-
-
-
-    <ImageView
-        android:id="@+id/dieThreeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="174dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginRight="79dp"
-        app:srcCompat="@drawable/die3" />
-
-    <ImageView
-        android:id="@+id/dieFourView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="47dp"
-        android:layout_marginBottom="311dp"
-        app:srcCompat="@drawable/die4" />
-
-    <ImageView
-        android:id="@+id/dieFiveView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
-        android:layout_marginBottom="311dp"
-        app:srcCompat="@drawable/die5" />
-
-    <ImageView
-        android:id="@+id/dieSixView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="78dp"
-        android:layout_marginRight="78dp"
-        android:layout_marginBottom="311dp"
-        app:srcCompat="@drawable/die6" />
 
     <Button
         android:id="@+id/rollButton"
