@@ -3,6 +3,7 @@ package android.example.pietjesbak;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ public class Gamescreen extends AppCompatActivity {
 
     //diceroller gebruiken in deze activity
     private DiceRoller diceRoller;
+
 
     //array van image views
     ImageView[] diceViews;
@@ -97,18 +99,70 @@ public class Gamescreen extends AppCompatActivity {
         //krijg de juiste image die gelinkt is aan het getal dat gegooid is
         String name = "die" + number;
 
+
+        //if(diceViews[1].){
+          // Log.i("Score", "één gegooid met dobbelsteen 1");
+         //}
+
+        if(number == 1){
+            Log.i("Score", "Er is een één gegooid");
+
+        }
+
         //naam van de image = die + nummer die we aan de method geven
         return getResources().getIdentifier(name, "drawable", getPackageName());
+
 
     }
 
     //verander de image van elke dobbelsteen die wordt gegooid
     private void changeDiceImages(){
         for (int i=0; i < Dices.NUMBER_DICE; i++){
+
             diceViews[i].setImageResource(getDiceId(
+
                     //krijg de dice id, uit functie die al geschreven was
                     diceRoller.getDice()[i].getDieResult()
             ));
+
         }
+
+        //**** SPELREGELS IMPLEMENTEREN  *****
+
+            //dobbelstenen ophalen per id met de gegooide waarde
+            int dice1 = diceRoller.getDice()[0].getDieResult();
+            int dice2 = diceRoller.getDice()[1].getDieResult();
+            int dice3 = diceRoller.getDice()[2].getDieResult();
+
+
+
+
+
+            //berekening van punten
+
+            if (dice1 == 1){
+                dice1 = 100;
+                //Log.i("Score", "score =" + Points);
+                int Points = dice1 + dice2 + dice3;
+                Log.i("Score", "score = " + Points);
+            }
+
+            //als er 3x een één wordt gegooid = AAP -------- WERKT! (random veranderen in 1)
+            if(dice1 == 1 && dice2 ==1 && dice3==1){
+                Log.i("Score", "AAP!");
+            }
+
+            //3 dezelfde = ZAND ------- WERKT! (random veranderen in 3 dezelfde cijfers)
+            else if(dice1 == dice2 && dice2==dice3){
+            Log.i("Score", "ZAND!");
+            }
+
+
+
+
+
+
+
+
     }
 }

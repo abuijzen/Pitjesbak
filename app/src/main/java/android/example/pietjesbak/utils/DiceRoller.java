@@ -2,8 +2,11 @@ package android.example.pietjesbak.utils;
 
 import android.example.pietjesbak.constant.Dices;
 import android.example.pietjesbak.models.Die;
+import android.util.Log;
 
 import java.util.Random;
+
+import static android.util.Log.w;
 
 public class DiceRoller {
     //houd een array van dice bij
@@ -32,7 +35,14 @@ public class DiceRoller {
 
         //random nummer gereren voor dobbelstenen tussen 1 en 6
         public int generateDiceEyes(){
-            return random.nextInt(6) + 1;
+
+            //verander het return getal in 1 voor een aap!
+            return 1;
+
+            //Zand
+            //return 2;
+
+            //return random.nextInt(6) + 1;
         }
 
         public void rollDice(){
