@@ -16,7 +16,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:background="#009688"
-        android:text="You won!"
+        android:text="You win!"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:layout_gravity="center"
@@ -44,6 +44,24 @@
 
 
     <TextView
+        android:id="@+id/Even2"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="Even - do it over!"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/Won1"
         android:layout_width="match_parent"
         android:layout_height="59dp"
@@ -54,7 +72,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:background="#009688"
-        android:text="You won!"
+        android:text="You win!"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:layout_gravity="center"
@@ -76,6 +94,25 @@
         android:background="#C72438"
         android:gravity="center"
         android:text="You Lose!"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Even1"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:text="Even - Do it over!"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -120,7 +157,8 @@
         android:layout_marginBottom="0dp"
         android:rotation="180"
         android:text="Score player 2"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:inputType="number"/>
 
     <TextView
         android:id="@+id/addPlayer2"
@@ -133,6 +171,19 @@
         android:layout_marginEnd="30px"
         android:rotation="180"
         android:text="Player 2"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scoreType2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30px"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="30px"
+        android:rotation="180"
         android:textAlignment="center"
         android:textStyle="bold" />
 
@@ -184,7 +235,8 @@
         android:layout_marginEnd="30px"
         android:layout_marginBottom="0dp"
         android:text="Score player 1"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:inputType="number"/>
 
     <TextView
         android:id="@+id/addPlayer1"
@@ -196,6 +248,18 @@
         android:layout_marginTop="472dp"
         android:layout_marginEnd="30px"
         android:text="Player 1"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scoreType1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30px"
+        android:layout_marginTop="384dp"
+        android:layout_marginEnd="30px"
         android:textAlignment="center"
         android:textStyle="bold" />
 
@@ -223,7 +287,6 @@
         android:layout_marginEnd="73dp"
         android:layout_marginRight="73dp"
         android:text="ready" />
-
 
 
 </RelativeLayout>

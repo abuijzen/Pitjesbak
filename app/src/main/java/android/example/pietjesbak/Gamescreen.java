@@ -2,10 +2,12 @@ package android.example.pietjesbak;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,11 +45,6 @@ public class Gamescreen extends AppCompatActivity {
     int Points;
     String Score;
 
-    //score per rondje
-    int stageScore1;
-    int stageScore2;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +74,15 @@ public class Gamescreen extends AppCompatActivity {
         TextView lose2 = (TextView) findViewById(R.id.Lose2);
         TextView won1 = (TextView) findViewById(R.id.Won1);
         TextView won2 = (TextView) findViewById(R.id.Won2);
+        TextView even1 = (TextView) findViewById(R.id.Even1);
+        TextView even2 = (TextView) findViewById(R.id.Even2);
 
         won1.setVisibility(View.GONE);
         won2.setVisibility(View.GONE);
         lose1.setVisibility(View.GONE);
         lose2.setVisibility(View.GONE);
+        even1.setVisibility(View.GONE);
+        even2.setVisibility(View.GONE);
 
 
     //dobbelstenen implementeren
@@ -118,7 +119,27 @@ public class Gamescreen extends AppCompatActivity {
                         click = click + 1;
 
                         if (click == 1){
+
+                            //alles terug leeg maken voor het volgende spelletje
                             ready1.setVisibility(View.VISIBLE);
+                            TextView lose1 = (TextView) findViewById(R.id.Lose1);
+                            TextView lose2 = (TextView) findViewById(R.id.Lose2);
+                            TextView won1 = (TextView) findViewById(R.id.Won1);
+                            TextView won2 = (TextView) findViewById(R.id.Won2);
+                            TextView even1 = (TextView) findViewById(R.id.Even1);
+                            TextView even2 = (TextView) findViewById(R.id.Even2);
+                            TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
+                            TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
+
+
+                            won2.setVisibility(View.GONE);
+                            lose1.setVisibility(View.GONE);
+                            won1.setVisibility(View.GONE);
+                            lose2.setVisibility(View.GONE);
+                            even1.setVisibility(View.GONE);
+                            even2.setVisibility(View.GONE);
+                            scorePlayer1.setText("");
+                            scorePlayer2.setText("");
                         }
 
 
@@ -192,6 +213,7 @@ public class Gamescreen extends AppCompatActivity {
                     rollButton.setVisibility(View.VISIBLE);
                     ready2.setVisibility(View.GONE);
                     click = 0;
+                    stageScore();
 
                 }
 
@@ -203,7 +225,7 @@ public class Gamescreen extends AppCompatActivity {
                 changeDiceImages();
 
                 scorePlayer2();
-                //stageScore();
+
 
             }
         });
@@ -224,9 +246,9 @@ public class Gamescreen extends AppCompatActivity {
 
                 }
                 scorePlayer2();
-                //stageScore();
                 click = 0;
                 clickready = 0;
+                stageScore();
 
             }
         });
@@ -353,52 +375,94 @@ public class Gamescreen extends AppCompatActivity {
     }
 
 
-    private void scorePlayer1() {
+    private String scorePlayer1() {
+
 
         TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
-        scorePlayer1.setText("" + Score + Points);
-        Log.i("","speler1"+ Points);
-        //return Points;
+
+        scorePlayer1.setText(""+Points);
+
+        String score1 = scorePlayer1.getText().toString();
+
+        Integer.parseInt(score1);
+
+
+        TextView scoreType1 = (TextView) findViewById(R.id.scoreType1);
+        scoreType1.setText(""+Score);
+
+
+        Log.i("speler1",score1);
+
+        return score1;
+
     }
 
-    private void scorePlayer2() {
+    private String scorePlayer2() {
 
         TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
-        scorePlayer2.setText("" + Score + Points);
-        Log.i("","speler2"+ Points);
-        //return Points;
+
+        scorePlayer2.setText(""+Points);
+
+        String score2 = scorePlayer2.getText().toString();
+
+        Integer.parseInt(score2);
+
+        Log.i("speler2",score2);
+
+
+
+
+        TextView scoreType2 = (TextView) findViewById(R.id.scoreType2);
+        scoreType2.setText(""+Score);
+
+        return score2;
+
     }
 
-    /*
+
 
     private void stageScore(){
 
-        stageScore1 = scorePlayer1();
-        stageScore2 = scorePlayer2();
+        TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
+        String score1 = scorePlayer1.getText().toString();
+        int score1int = Integer.parseInt(score1);
 
-        Log.i("","speler1"+ stageScore1);
-        Log.i("","speler2"+ stageScore2);
 
-        if(stageScore2 > stageScore1){
+        TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
+        String score2 = scorePlayer2.getText().toString();
+        int score2int = Integer.parseInt(score2);
+
+
+        if(score1int < score2int){
 
             TextView lose1 = (TextView) findViewById(R.id.Lose1);
-            TextView lose2 = (TextView) findViewById(R.id.Lose2);
-            TextView won1 = (TextView) findViewById(R.id.Won1);
             TextView won2 = (TextView) findViewById(R.id.Won2);
 
-            won1.setVisibility(View.GONE);
             won2.setVisibility(View.VISIBLE);
             lose1.setVisibility(View.VISIBLE);
-            lose2.setVisibility(View.GONE);
         }
+
+        else if(score1int > score2int){
+
+            TextView lose2 = (TextView) findViewById(R.id.Lose2);
+            TextView won1 = (TextView) findViewById(R.id.Won1);
+
+            won1.setVisibility(View.VISIBLE);
+            lose2.setVisibility(View.VISIBLE);
+        }
+
+        else if(score1int == score2int ){
+
+            TextView even2 = (TextView) findViewById(R.id.Even2);
+            TextView even1 = (TextView) findViewById(R.id.Even1);
+
+            even1.setVisibility(View.VISIBLE);
+            even2.setVisibility(View.VISIBLE);
+        }
+
+
+
+
     }
-
-*/
-
-
-
-
-
-
 
 }
