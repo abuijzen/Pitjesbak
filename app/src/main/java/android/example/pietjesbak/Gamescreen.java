@@ -203,7 +203,7 @@ public class Gamescreen extends AppCompatActivity {
                 changeDiceImages();
 
                 scorePlayer2();
-                stageScore();
+                //stageScore();
 
             }
         });
@@ -224,7 +224,7 @@ public class Gamescreen extends AppCompatActivity {
 
                 }
                 scorePlayer2();
-                stageScore();
+                //stageScore();
                 click = 0;
                 clickready = 0;
 
@@ -353,21 +353,23 @@ public class Gamescreen extends AppCompatActivity {
     }
 
 
-    private int scorePlayer1() {
+    private void scorePlayer1() {
 
         TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
         scorePlayer1.setText("" + Score + Points);
         Log.i("","speler1"+ Points);
-        return Points;
+        //return Points;
     }
 
-    private int scorePlayer2() {
+    private void scorePlayer2() {
 
         TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
         scorePlayer2.setText("" + Score + Points);
         Log.i("","speler2"+ Points);
-        return Points;
+        //return Points;
     }
+
+    /*
 
     private void stageScore(){
 
@@ -390,6 +392,8 @@ public class Gamescreen extends AppCompatActivity {
             lose2.setVisibility(View.GONE);
         }
     }
+
+*/
 
 
 
