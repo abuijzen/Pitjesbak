@@ -3,7 +3,6 @@ package android.example.pietjesbak;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,8 +25,19 @@ public class Gamescreen extends AppCompatActivity {
     ImageView dieTwoView;
     ImageView dieThreeView;
 
+
     //button instantie
     Button rollButton;
+    Button rollButton2;
+    Button ready1;
+    Button ready2;
+
+
+    int click = 0;
+    int clickready = 0;
+
+    int Points;
+    String Score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +74,37 @@ public class Gamescreen extends AppCompatActivity {
 
     private void setupButtons(){
         rollButton = findViewById(R.id.rollButton);
+        rollButton2 = findViewById(R.id.rollButton2);
+        ready1 = findViewById(R.id.ready1);
+        ready2 = findViewById(R.id.ready2);
 
+        //zichtbaarheid knoppen bij start van het spel
+        rollButton2.setVisibility(View.GONE);
+        ready1.setVisibility(View.GONE);
+        ready2.setVisibility(View.GONE);
+
+
+
+            //SPELER 1
             //als de knop om te dobbelen wordt ingeklikt gebeurd er dit...
             rollButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View arg0){
+
+
+                        click = click + 1;
+
+                        if (click == 1){
+                            ready1.setVisibility(View.VISIBLE);
+                        }
+
+
+                        if(click == 3){
+                            rollButton.setVisibility(View.GONE);
+                            rollButton2.setVisibility(View.VISIBLE);
+                            ready1.setVisibility(View.GONE);
+                            click= 0;
+                        }
 
                         //diceroller moet de dobbelstenen doen rollen
                         diceRoller.rollDice();
@@ -76,9 +112,98 @@ public class Gamescreen extends AppCompatActivity {
                         //afbeelding van de dobbelsteen veranderen
                         changeDiceImages();
 
+                        scorePlayer1();
+
                     }
             });
+
+        //SPELER 1
+        //als speler 1 kiest om eerder te stoppen met dobbelen
+        ready1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
+
+                rollButton.setVisibility(View.GONE);
+                ready1.setVisibility(View.GONE);
+                rollButton2.setVisibility(View.VISIBLE);
+
+
+                //als de speler na 1x gooien stopt, krijgt de andere speler MAX 1 kans
+                if (click == 1){
+                    click = 2;
+                }
+
+                //ales de speler na 2x gooien stopt, krijgt de andere speler MAX 2 kansen
+                else if (click == 2){
+                    click = 1;
+
+                }
+
+                scorePlayer1();
+
+            }
+        });
+
+
+
+
+            //SPELER 2
+            //als de knop om te dobbelen wordt ingeklikt gebeurd er dit...
+            rollButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
+
+
+                click = click + 1;
+
+                if(click == 1){
+                    ready2.setVisibility(View.VISIBLE);
+                }
+
+                if (click ==2){
+                    ready2.setVisibility(View.VISIBLE);
+                }
+
+                if(click ==3){
+                    rollButton2.setVisibility(View.GONE);
+                    rollButton.setVisibility(View.VISIBLE);
+                    ready2.setVisibility(View.GONE);
+                    click = 0;
+                }
+
+                //diceroller moet de dobbelstenen doen rollen
+                diceRoller.rollDice();
+
+                //afbeelding van de dobbelsteen veranderen
+                changeDiceImages();
+
+                scorePlayer2();
+
+            }
+        });
+
+        //SPELER 2
+        //als speler 1 kiest om eerder te stoppen met dobbelen
+        ready2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
+
+                clickready = clickready + 1;
+                if(clickready == 1){
+                    rollButton2.setVisibility(View.GONE);
+                    ready2.setVisibility(View.GONE);
+                    rollButton.setVisibility(View.VISIBLE);
+                    ready1.setVisibility(View.VISIBLE);
+                }
+                scorePlayer2();
+                click = 0;
+
+            }
+        });
+
     }
+
+
 
     //instellen van imageviews
     private void setupImageViews(){
@@ -100,15 +225,6 @@ public class Gamescreen extends AppCompatActivity {
         String name = "die" + number;
 
 
-        //if(diceViews[1].){
-          // Log.i("Score", "één gegooid met dobbelsteen 1");
-         //}
-
-        if(number == 1){
-            Log.i("Score", "Er is een één gegooid");
-
-        }
-
         //naam van de image = die + nummer die we aan de method geven
         return getResources().getIdentifier(name, "drawable", getPackageName());
 
@@ -127,6 +243,7 @@ public class Gamescreen extends AppCompatActivity {
 
         }
 
+
         //**** SPELREGELS IMPLEMENTEREN  *****
 
             //dobbelstenen ophalen per id met de gegooide waarde
@@ -135,34 +252,92 @@ public class Gamescreen extends AppCompatActivity {
             int dice3 = diceRoller.getDice()[2].getDieResult();
 
 
+            //AAP
+            if(dice1 == 1 && dice2 == 1 && dice3== 1){
 
+                Points = 300;
+                Score = "3 Azen";
 
-
-            //berekening van punten
-
-            if (dice1 == 1){
-                dice1 = 100;
-                //Log.i("Score", "score =" + Points);
-                int Points = dice1 + dice2 + dice3;
-                Log.i("Score", "score = " + Points);
             }
 
-            //als er 3x een één wordt gegooid = AAP -------- WERKT! (random veranderen in 1)
-            if(dice1 == 1 && dice2 ==1 && dice3==1){
-                Log.i("Score", "AAP!");
+            //ZAND
+            else if(dice1 == dice2 && dice2 == dice3){
+                Points = dice1 + dice2 + dice3;
+                Score = "Zand ";
             }
 
-            //3 dezelfde = ZAND ------- WERKT! (random veranderen in 3 dezelfde cijfers)
-            else if(dice1 == dice2 && dice2==dice3){
-            Log.i("Score", "ZAND!");
+            //SOIXANTE NEUF
+            else if (dice1 == 4 && dice2 == 5 && dice3 == 6
+                    || dice1 == 6 && dice2 == 4 && dice3 == 5
+                    || dice1 == 5 && dice2 == 6 && dice3 == 4
+                    || dice1 == 6 && dice2 == 5 && dice3 == 4
+                    || dice1 == 5 && dice2 == 4 && dice3 == 6
+                    || dice1 == 4 && dice2 == 6 && dice3 == 5){
+                Points = 69;
+                Score = "SOIXANTE NEUF ";
+
             }
+            //ZEVEN
+            else if (dice1 == 2 && dice2 == 2 && dice3 == 3
+                    || dice1 == 3 && dice2 == 2 && dice3 == 2
+                    || dice1 == 2 && dice2 == 3 && dice3 == 2){
+                Points = dice1 + dice2 + dice3;
+                Score = "Zeven ";
 
+            }
+            //gewone punttelling
+            else{
 
+                //1 = 100 punten
+                if(dice1 ==1){
+                    dice1=100;
+                }
 
+                if(dice2 == 1){
+                    dice2 = 100;
+                }
 
+                if(dice3 == 1){
+                    dice3 =100;
+                }
 
+                //6 = 60punten
+                if(dice1 == 6){
+                    dice1 =60;
+                }
 
+                if(dice2 == 6){
+                    dice2 = 60;
+                }
 
+                if(dice3 == 6){
+                    dice3 =60;
+                }
+
+                Points = dice1 + dice2 + dice3;
+                Score = "Score: ";
+
+            }
 
     }
+
+
+    private void scorePlayer1() {
+
+
+        TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
+        scorePlayer1.setText("" + Score + Points);
+    }
+
+    private void scorePlayer2() {
+
+
+        TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
+        scorePlayer2.setText("" + Score + Points);
+    }
+
+
+
+
+
 }
