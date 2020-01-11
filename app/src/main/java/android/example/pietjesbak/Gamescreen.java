@@ -3,6 +3,7 @@ package android.example.pietjesbak;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,11 +34,20 @@ public class Gamescreen extends AppCompatActivity {
     Button ready2;
 
 
+    //aantal keer gegooid
     int click = 0;
     int clickready = 0;
 
+
+    //tellen van aantal ogen + beschrijving van speciale scores
     int Points;
     String Score;
+
+    //score per rondje
+    int stageScore1;
+    int stageScore2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +66,22 @@ public class Gamescreen extends AppCompatActivity {
         TextView getPlayer1 = (TextView) findViewById(R.id.addPlayer1);
         TextView getPlayer2 = (TextView) findViewById(R.id.addPlayer2);
 
+
         //bestemde tekstvelden aanpassen met de spelers
         getPlayer1.setText(player1);
         getPlayer2.setText(player2);
+
+
+        //score boodschappen
+        TextView lose1 = (TextView) findViewById(R.id.Lose1);
+        TextView lose2 = (TextView) findViewById(R.id.Lose2);
+        TextView won1 = (TextView) findViewById(R.id.Won1);
+        TextView won2 = (TextView) findViewById(R.id.Won2);
+
+        won1.setVisibility(View.GONE);
+        won2.setVisibility(View.GONE);
+        lose1.setVisibility(View.GONE);
+        lose2.setVisibility(View.GONE);
 
 
     //dobbelstenen implementeren
@@ -169,7 +192,9 @@ public class Gamescreen extends AppCompatActivity {
                     rollButton.setVisibility(View.VISIBLE);
                     ready2.setVisibility(View.GONE);
                     click = 0;
+
                 }
+
 
                 //diceroller moet de dobbelstenen doen rollen
                 diceRoller.rollDice();
@@ -178,6 +203,7 @@ public class Gamescreen extends AppCompatActivity {
                 changeDiceImages();
 
                 scorePlayer2();
+                stageScore();
 
             }
         });
@@ -188,20 +214,25 @@ public class Gamescreen extends AppCompatActivity {
             @Override
             public void onClick(View arg0){
 
+
                 clickready = clickready + 1;
                 if(clickready == 1){
                     rollButton2.setVisibility(View.GONE);
                     ready2.setVisibility(View.GONE);
                     rollButton.setVisibility(View.VISIBLE);
-                    ready1.setVisibility(View.VISIBLE);
+                    //ready1.setVisibility(View.VISIBLE);
+
                 }
                 scorePlayer2();
+                stageScore();
                 click = 0;
+                clickready = 0;
 
             }
         });
 
     }
+
 
 
 
@@ -322,19 +353,45 @@ public class Gamescreen extends AppCompatActivity {
     }
 
 
-    private void scorePlayer1() {
-
+    private int scorePlayer1() {
 
         TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
         scorePlayer1.setText("" + Score + Points);
+        Log.i("","speler1"+ Points);
+        return Points;
     }
 
-    private void scorePlayer2() {
-
+    private int scorePlayer2() {
 
         TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
         scorePlayer2.setText("" + Score + Points);
+        Log.i("","speler2"+ Points);
+        return Points;
     }
+
+    private void stageScore(){
+
+        stageScore1 = scorePlayer1();
+        stageScore2 = scorePlayer2();
+
+        Log.i("","speler1"+ stageScore1);
+        Log.i("","speler2"+ stageScore2);
+
+        if(stageScore2 > stageScore1){
+
+            TextView lose1 = (TextView) findViewById(R.id.Lose1);
+            TextView lose2 = (TextView) findViewById(R.id.Lose2);
+            TextView won1 = (TextView) findViewById(R.id.Won1);
+            TextView won2 = (TextView) findViewById(R.id.Won2);
+
+            won1.setVisibility(View.GONE);
+            won2.setVisibility(View.VISIBLE);
+            lose1.setVisibility(View.VISIBLE);
+            lose2.setVisibility(View.GONE);
+        }
+    }
+
+
 
 
 
