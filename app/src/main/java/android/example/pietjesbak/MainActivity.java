@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //inhoud van inputvelden opvragen
         EditText addPlayer1 = (EditText) findViewById(R.id.addPlayer1);
         EditText addPlayer2 = (EditText) findViewById(R.id.addPlayer2);
+
         //opgehaalde tekst omzetten in string
         String player1 = addPlayer1.getText().toString();
         String player2 = addPlayer2.getText().toString();
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("player2", player2);
 
 
-        if (addPlayer1.getText().toString().trim().equals("") && (addPlayer2.getText().toString().trim().equals(""))) {
+        if (addPlayer1.getText().toString().trim().equals("") || (addPlayer2.getText().toString().trim().equals(""))) {
             //error boodschap
             addPlayer1.setError("Name is required!");
             addPlayer2.setError("Name is required!");
