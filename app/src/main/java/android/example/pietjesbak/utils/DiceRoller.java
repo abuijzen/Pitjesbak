@@ -37,7 +37,7 @@ public class DiceRoller {
         public int generateDiceEyes(){
 
             //verander het return getal in 1 voor een aap!
-            //return 1;
+            return random.nextInt((2-1)+1)+1;
 
             //Zand
             //return 2;
@@ -49,7 +49,7 @@ public class DiceRoller {
             //return random.nextInt((3-2)+1)+2;
 
             //random
-            return random.nextInt(6) + 1;
+            //return random.nextInt(6) + 1;
 
         }
 
