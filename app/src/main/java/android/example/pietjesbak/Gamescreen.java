@@ -126,7 +126,6 @@ public class Gamescreen extends AppCompatActivity {
                     scoreType1.setText("");
                     scoreType2.setText("");
 
-
                     click = click + 1;
 
                         if (click == 1){
@@ -182,21 +181,20 @@ public class Gamescreen extends AppCompatActivity {
                 //als de speler na 1x gooien stopt, krijgt de andere speler MAX 1 kans
                 if (click == 1){
                     click = 2;
-                    Log.i("click",""+click);
+                    scorePlayer1();
                 }
 
                 //ales de speler na 2x gooien stopt, krijgt de andere speler MAX 2 kansen
                 else if (click == 2){
                     click = 1;
-                    Log.i("click",""+click);
+                    scorePlayer1();
 
                 }
 
-                scorePlayer1();
+                //scorePlayer1();
 
             }
         });
-
 
 
 
@@ -212,11 +210,13 @@ public class Gamescreen extends AppCompatActivity {
                 if(click == 1){
                     ready2.setVisibility(View.VISIBLE);
                     Log.i("click",""+click);
+                    scorePlayer2();
                 }
 
                 if (click ==2){
                     ready2.setVisibility(View.VISIBLE);
                     Log.i("click",""+click);
+                    scorePlayer2();
                 }
 
                 if(click ==3){
@@ -255,7 +255,6 @@ public class Gamescreen extends AppCompatActivity {
                     rollButton2.setVisibility(View.GONE);
                     ready2.setVisibility(View.GONE);
                     rollButton.setVisibility(View.VISIBLE);
-                    //ready1.setVisibility(View.VISIBLE);
                     scorePlayer2();
 
                 }
@@ -425,10 +424,15 @@ public class Gamescreen extends AppCompatActivity {
         won1.setVisibility(View.VISIBLE);
         lose2.setVisibility(View.VISIBLE);
 
+        //ster aftrekken bij speler 1
+        RatingBar scoreBar1 = (RatingBar) findViewById(R.id.score1);
+        Float scoreBar1a = scoreBar1.getRating();
+        Float newScore = scoreBar1a - 1;
+        scoreBar1.setRating(newScore);
+
 
         //Sterren speler 2
-        RatingBar scoreBar2 = (RatingBar) findViewById(R.id.score2);
-        Float newScore = scoreBar2.getRating();
+
 
         if(newScore == 0.0){
 
@@ -455,11 +459,14 @@ public class Gamescreen extends AppCompatActivity {
             won2.setVisibility(View.VISIBLE);
             lose1.setVisibility(View.VISIBLE);
 
-
+        //ster aftrekken bij speler 2
+            RatingBar scoreBar2 = (RatingBar) findViewById(R.id.score2);
+            Float scoreBar1a = scoreBar2.getRating();
+            Float newScore = scoreBar1a - 1;
+            scoreBar2.setRating(newScore);
 
         //Sterren speler 2
-            RatingBar scoreBar2 = (RatingBar) findViewById(R.id.score2);
-            Float newScore = scoreBar2.getRating();
+
 
             if(newScore == 0.0) {
 
@@ -473,7 +480,6 @@ public class Gamescreen extends AppCompatActivity {
                 intent.putExtra("winner", player2text);
                 startActivity(intent);
             }
-
     }
 
     private void winNoOne(){
@@ -491,22 +497,25 @@ public class Gamescreen extends AppCompatActivity {
             TextView scorePlayer1 = (TextView) findViewById(R.id.scorePlayer1);
             String score1 = scorePlayer1.getText().toString();
             int score1int = Integer.parseInt(score1);
+            Log.i("score speler 1",""+ score1int);
 
         //benaming score speler 1 ophalen
             TextView scoreType1 = (TextView) findViewById(R.id.scoreType1);
             String scoreType1String = scoreType1.getText().toString();
+            Log.i("naam score speler 1",""+ scoreType1String);
 
     //speler 2 --------
         //score speler 2 ophalen + omzetten naar integer
             TextView scorePlayer2 = (TextView) findViewById(R.id.scorePlayer2);
             String score2 = scorePlayer2.getText().toString();
             int score2int = Integer.parseInt(score2);
+            Log.i("score speler 2",""+ score2int);
 
         //benaming score speler 2 ophalen
             TextView scoreType2 = (TextView) findViewById(R.id.scoreType2);
             String scoreType2String = scoreType1.getText().toString();
 
-            Log.i("scoretype", ""+scoreType2String);
+        Log.i("naam score speler 2",""+ scoreType2String);
 
 
      //AZEN
@@ -527,30 +536,41 @@ public class Gamescreen extends AppCompatActivity {
                         winPlayer2();
                     }
 
-                    else if(scoreType1String.equals("AZEN")
-                            && scoreType2String.equals("AZEN")
-                            || scoreType1String.equals("SOIXANTE-NEUF")
-                            && scoreType2String.equals("SOIXANTE-NEUF")){
+                    if(scoreType1String.equals("AZEN") && scoreType2String.equals("AZEN")){
 
                         winNoOne();
 
                     }
 
-                    else if(scoreType1String.equals("SOIXANTE-NEUF")
-                            && !scoreType2String.equals("SOIXANTE-NEUF")
-                            && !scoreType2String.equals("AZEN")){
 
-                        winPlayer1();
 
-                    }
+        }
 
-                    else if(scoreType2String.equals("SOIXANTE-NEUF")
-                            && !scoreType1String.equals("SOIXANTE-NEUF")
-                            && scoreType1String.equals("AZEN")){
+     //SOIXANTE-NEUF
+        else if(scoreType1String.equals("SOIXANTE-NEUF") || scoreType2String.equals("SOIXANTE-NEUF")){
 
-                        winPlayer2();
 
-                    }
+            if(scoreType1String.equals("SOIXANTE-NEUF") && scoreType2String.equals("SOIXANTE-NEUF")){
+                winNoOne();
+            }
+
+            if(scoreType1String.equals("SOIXANTE-NEUF")
+                    && !scoreType2String.equals("SOIXANTE-NEUF")
+                    ||
+                    scoreType1String.equals("SOIXANTE-NEUF")
+                    && !scoreType2String.equals("AZEN")){
+
+                winPlayer1();
+
+            }
+
+
+            if(scoreType2String.equals("SOIXANTE-NEUF")
+                    && !scoreType1String.equals("SOIXANTE-NEUF")
+                    && !scoreType1String.equals("AZEN")){
+
+                winPlayer2();
+            }
 
         }
 
@@ -560,13 +580,12 @@ public class Gamescreen extends AppCompatActivity {
 
                     if(scoreType1String.equals("ZAND")
                             && !scoreType2String.equals("ZAND")
-                            && !scoreType2String.equals("SOIXANTE-NEUF")
-                            && !scoreType2String.equals("ZAND")){
+                            && !scoreType2String.equals("SOIXANTE-NEUF")){
 
                         winPlayer1();
                     }
 
-                    else if(scoreType2String.equals("ZAND")
+                    if(scoreType2String.equals("ZAND")
                             && scoreType1String != "AZEN"
                             && !scoreType1String.equals("SOIXANTE-NEUF")
                             && !scoreType1String.equals("ZAND")){
@@ -575,7 +594,7 @@ public class Gamescreen extends AppCompatActivity {
                     }
 
 
-                    else if(scoreType1String.equals("ZAND")
+                    if(scoreType1String.equals("ZAND")
                             && scoreType2String.equals("ZAND")
                             && score1int > score2int){
 
@@ -583,11 +602,19 @@ public class Gamescreen extends AppCompatActivity {
 
                     }
 
-                    else if(scoreType1String.equals("ZAND")
+                    if(scoreType1String.equals("ZAND")
                             && scoreType2String.equals("ZAND")
                             && score1int < score2int){
 
                         winPlayer2();
+
+                    }
+
+                    if(scoreType1String.equals("ZAND")
+                        && scoreType2String.equals("ZAND")
+                        && score1int == score2int){
+
+                        winNoOne();
 
                     }
         }
